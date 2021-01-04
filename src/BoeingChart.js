@@ -3,7 +3,7 @@ import axios from "axios";
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
-// import BOEING_PRICES from './hardCodedData';
+import { BOEING_PRICES }from './hardCodedData';
 
 const options = {
   method: 'GET',
@@ -24,7 +24,7 @@ const BoeingChart = () => {
       setChartData(response.data.prices);
     }).catch(function (error) {
       console.error(error);
-   //    setChartData(BOEING_PRICES);
+      setChartData(BOEING_PRICES);
     });
   }, []);
 
