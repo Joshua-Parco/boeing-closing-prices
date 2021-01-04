@@ -3,14 +3,14 @@ import axios from "axios";
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
-import { BOEING_PRICES }from './hardCodedData';
+import { BOEING_PRICES } from './hardCodedData';
 
 const options = {
   method: 'GET',
   url: 'https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v3/get-historical-data',
   params: {symbol: 'BA', region: 'US'},
   headers: {
-    'x-rapidapi-key': process.env.REACT_APP_API_KEY,
+    'x-rapidapi-key': 'aksjdgfbaksjdb',
     'x-rapidapi-host': 'apidojo-yahoo-finance-v1.p.rapidapi.com'
   }
 };
