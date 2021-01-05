@@ -1,7 +1,13 @@
 import { useEffect, useState, } from 'react';
 import axios from "axios";
 import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
 } from 'recharts';
 import { BOEING_PRICES } from './hardCodedData';
 
@@ -69,6 +75,5 @@ const BoeingChart = () => {
     </div>
   );
 }
-
 
 export default BoeingChart;
