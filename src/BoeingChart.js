@@ -5,15 +5,19 @@ import {
 } from 'recharts';
 import { BOEING_PRICES } from './hardCodedData';
 
-// const formatData = (dataFromAPI) => {
-//   dataFromAPI.forEach( data => {
-//     let formattedDate = new Date(data.date *1000)
-//     let formattedData = {...data, writtenDate: formattedDate, } 
-//     data = formattedData;
-//   })
-//   
-// }
-// 
+const formatData = (dataFromAPI) => {
+  let formattedData = [];
+  dataFromAPI.forEach( data => {
+    let formattedDate = new Date(data.date *1000)
+    let day = formattedDate.getDate();
+    let month = formattedDate.getMonth();
+    let year = formattedDate.getFullYear();
+    let fullDate = (month + 1) + "/" + day + "/" + year;
+    let formattedDataElement = {...data, date: fullDate, } 
+    formattedData.push(formattedDataElement);
+  })
+  return formattedData;
+}
 
 const options = {
   method: 'GET',
@@ -31,14 +35,15 @@ const BoeingChart = () => {
   useEffect(() => {
     axios.request(options).then(function (response) {
       console.log(response.data.prices);
-      // let formattedData = formatData(response.data.prices);
-      // setChartData(formattedData);
-      setChartData(response.data.prices);
+      let formattedData = formatData(response.data.prices).reverse();
+      console.log(formattedData);
+      setChartData(formattedData);
+      // setChartData(response.data.prices);
     }).catch(function (error) {
       console.error(error);
-      // let formattedData = formatData(BOEING_PRICES);
-      // setChartData(formattedData);
-      setChartData(BOEING_PRICES);
+      let formattedData = formatData(BOEING_PRICES).reverse();
+      setChartData(formattedData);
+      // setChartData(BOEING_PRICES);
     });
   }, []);
 
