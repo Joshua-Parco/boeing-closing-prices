@@ -14,12 +14,12 @@ import { BOEING_PRICES } from './hardCodedData';
 const formatData = (dataFromAPI) => {
   let formattedData = [];
   dataFromAPI.forEach( data => {
-    let formattedDate = new Date(data.date *1000)
-    let day = formattedDate.getDate();
-    let month = formattedDate.getMonth();
-    let year = formattedDate.getFullYear();
-    let fullDate = (month + 1) + "/" + day + "/" + year;
-    let formattedDataElement = {...data, date: fullDate, } 
+    let convertedDate = new Date(data.date *1000)
+    let day = convertedDate.getDate();
+    let month = convertedDate.getMonth();
+    let year = convertedDate.getFullYear();
+    let formattedDate = (month + 1) + "/" + day + "/" + year;
+    let formattedDataElement = {...data, date: formattedDate, } 
     formattedData.push(formattedDataElement);
   })
   return formattedData;
@@ -37,6 +37,7 @@ const options = {
 
 const BoeingChart = () => {
   const [chartData, setChartData] = useState([]);
+  const [tickerSymbol, setTickerSymbol] = useState("BA");
 
   useEffect(() => {
     axios.request(options).then(function (response) {
@@ -55,7 +56,8 @@ const BoeingChart = () => {
 
   return (
     <div>
-      <h1>Boeing Closing and Opening Stock Prices</h1>
+      <h1>Closing and Opening Stock Prices for Ticker Symbol {options.params.symbol}</h1>
+      <h2>(The Boeing Company)</h2>
       <LineChart
         width={500}
         height={300}
